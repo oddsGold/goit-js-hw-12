@@ -21,12 +21,13 @@ const getImages = () => {
 
         const totalPages = Math.ceil(res.totalHits / per_page);
 
-        if(params.page > totalPages) {
+        if(params.page >= totalPages) {
           loadImagesButton.style.display = 'none';
+          createHTML(res.hits);
+          if (parseInt(res.totalHits) <= 0){
+            throw new Error('Sorry, there are no images matching your search query. Please try again!');
+          }
           throw new Error('We are sorry, but you\'ve reached the end of search results.')
-        }
-        if (parseInt(res.totalHits) <= 0){
-          throw new Error('Sorry, there are no images matching your search query. Please try again!');
         }
         loadImagesButton.style.display = 'inline-block';
         createHTML(res.hits);
