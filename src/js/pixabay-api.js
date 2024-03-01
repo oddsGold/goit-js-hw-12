@@ -13,9 +13,8 @@ const INSTANCE =  axios.create({
   headers: {'Accept': 'application/json'}
 });
 
-export const images = {
-  async getImages(inputResult, page) {
+  export async function getAllImages(inputResult) {
     const response = await INSTANCE.get(`?key=${key}&q=${encodeURIComponent(inputResult)}`, {params: params});
     return response.data;
   }
-}
+

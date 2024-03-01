@@ -3,18 +3,17 @@ import "simplelightbox/dist/simple-lightbox.min.css";
 
 const gallery = document.querySelector('.gallery');
 
+const lightbox = new SimpleLightbox('.gallery .gallery-link', {
+  className: 'gallery-link',
+  closeText: ['<i class="fa fa-times">&#10006;</i>'],
+  navText: ['<i class="fa fa-angle-left">&lt;</i>','<i class="fa fa-angle-right">&gt;</i>'],
+  captionsData: 'alt',
+  captionDelay: 250
+});
+
 export const createHTML = (images) => {
-  const lightbox = new SimpleLightbox('.gallery .gallery-link', {
-    className: 'gallery-link',
-    closeText: ['<i class="fa fa-times">&#10006;</i>'],
-    navText: ['<i class="fa fa-angle-left">&lt;</i>','<i class="fa fa-angle-right">&gt;</i>'],
-    captionsData: 'alt',
-    captionDelay: 250
-  });
 
-  // gallery.innerHTML = "";
-
-  const galleryImages = images.map(({webformatURL, largeImageURL, tags, likes, views, comments, downloads}) => {
+ const galleryImages = images.map(({webformatURL, largeImageURL, tags, likes, views, comments, downloads}) => {
     return `<a class="gallery-link" href="${largeImageURL}">
                           <img
                             class="gallery-image"
